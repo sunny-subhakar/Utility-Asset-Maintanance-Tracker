@@ -35,6 +35,7 @@ const SupervisorDashboard = () => {
 	const [dataVersion, setDataVersion] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [apiCallMade, setApiCallMade] = useState(false);
+	const [selectedTechnician, setSelectedTechnician] = useState(null);
 
 	const fetchData = useCallback(async () => {
 		setLoading(true);
@@ -92,10 +93,10 @@ const SupervisorDashboard = () => {
 			'asset-registration': () => <AssetRegistration handleTabChange={handleTabChange} onDataChange={handleDataChange} setApiCallMade={setApiCallMade} />,
 			'search-assets': () => <SearchAssets assets={assets} onDataChange={handleDataChange} setApiCallMade={setApiCallMade} />,
 			'assign-work': () => <AssignWork workOrders={workOrders} technicians={technicians} onDataChange={handleDataChange} setApiCallMade={setApiCallMade} />,
-			'view-assignments': () => <ViewAssignments workOrders={workOrders} setApiCallMade={setApiCallMade} />,
+			'view-assignments': () => <ViewAssignments workOrders={workOrders} selectedTechnician={selectedTechnician} setSelectedTechnician={setSelectedTechnician} setApiCallMade={setApiCallMade} />,
 			'asset-history': () => <AssetHistory workOrders={workOrders} setApiCallMade={setApiCallMade} />,
 			'technician-summary': () => <TechnicianSummary workOrders={workOrders} setApiCallMade={setApiCallMade} />,
-			'search-technician': () => <SearchTechnicians technicians={technicians} handleTabChange={handleTabChange} setApiCallMade={setApiCallMade} />,
+			'search-technician': () => <SearchTechnicians technicians={technicians} handleTabChange={handleTabChange} setSelectedTechnician={setSelectedTechnician} setApiCallMade={setApiCallMade} />,
 			'register-technician': () => <RegisterTechnician handleTabChange={handleTabChange} onDataChange={handleDataChange} setApiCallMade={setApiCallMade} />,
 			'maintenance-plan': () => <MaintenancePlan plans={plans} setApiCallMade={setApiCallMade} />
 		};

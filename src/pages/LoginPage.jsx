@@ -25,8 +25,6 @@ const LoginPage = () => {
  
   useEffect(() => {
     if (location.state?.registeredSuccess) {
-      //alert('Account created successfully. Please sign in.');
-      // replace state to clear banner on back/refresh
       navigate('/login', { replace: true, state: { registeredEmail: location.state.registeredEmail } });
     }
   }, [location.state, navigate]);
@@ -48,7 +46,6 @@ const LoginPage = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
    
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -95,11 +92,6 @@ const LoginPage = () => {
  
       if (response.ok) {
         const { token, id, name, email, password, phno, region,pincode,location,skill, role } = await response.json();
-       
-        // Debug: Check what we're getting from backend
-        // console.log('Login response:', { token, id, name, email, password, phno, region,pincode,location,skill, role });
-       
-        // Store token and set axios default header
         localStorage.setItem('authToken', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
        

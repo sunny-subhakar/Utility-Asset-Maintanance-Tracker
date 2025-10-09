@@ -26,7 +26,7 @@ const WorkOrderCard = ({ order, status, onStatusChange, onUpdate, onViewDetails,
 
       <div style={{ display: 'flex', gap: '10px', marginBottom: '12px', alignItems: 'center' }}>
         <select
-          value={status || ''}
+          value={status || order.status}
           onChange={(e) => onStatusChange(e.target.value)}
           style={{ maxWidth: '200px', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }}
         >
@@ -39,7 +39,7 @@ const WorkOrderCard = ({ order, status, onStatusChange, onUpdate, onViewDetails,
           disabled={!status}
           onClick={onUpdate}
         >
-          Update
+          {status === 'Completed' ? status : "Update"}
         </button>
       </div>
 
